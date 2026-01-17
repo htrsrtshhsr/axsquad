@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AxSquad • 1 2 4</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #00ffea;
+      --secondary: #ff0066;
+      --accent: #ff00ff;
+      --bg: #0b0015;
+      --dark: #00000a;
+      --text: #e0ffff;
+      --card: rgba(15, 0, 35, 0.75);
+      --glitch: #ff00aa;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Roboto Mono', monospace;
+      line-height: 1.6;
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(0,255,234,0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255,0,102,0.08) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.2rem 6%;
+      background: rgba(5,0,15,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,255,234,0.3);
+    }
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.4rem;
+      color: var(--primary);
+      text-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+      animation: glitch 4s infinite;
+    }
+    @keyframes glitch {
+      0%,100% { text-shadow: 0 0 20px var(--primary); }
+      2% { text-shadow: 2px 0 var(--glitch), -2px 0 var(--primary); }
+      4% { text-shadow: -2px 0 var(--glitch), 2px 0 var(--primary); }
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 1.8rem;
+      font-weight: 700;
+      transition: 0.4s;
+      text-shadow: 0 0 5px rgba(0,255,234,0.5);
+    }
+    nav a:hover { color: var(--primary); text-shadow: 0 0 15px var(--primary); }
+
+    .hero {
+      height: 100vh;
+      min-height: 800px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(rgba(11,0,21,0.85), rgba(0,0,10,0.9)), url('https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&q=80') center/cover;
+      background-attachment: fixed;
+    }
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 7rem;
+      color: var(--primary);
+      text-shadow: 0 0 40px var(--primary), 0 0 80px var(--secondary), 0 0 120px var(--accent);
+      margin-bottom: 1.5rem;
+      animation: pulse 3s infinite alternate;
+    }
+    @keyframes pulse {
+      from { opacity: 0.92; transform: scale(1); }
+      to   { opacity: 1; transform: scale(1.02); }
+    }
+    .hero .tagline {
+      font-size: 2.2rem;
+      max-width: 900px;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 15px var(--secondary);
+      letter-spacing: 2px;
+    }
+    .cta {
+      padding: 1.2rem 4rem;
+      font-size: 1.5rem;
+      background: transparent;
+      border: 3px solid var(--primary);
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 0.5s;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: bold;
+      box-shadow: 0 0 30px rgba(0,255,234,0.4);
+    }
+    .cta:hover {
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      color: #000;
+      border-color: transparent;
+      box-shadow: 0 0 60px var(--secondary);
+      transform: translateY(-5px);
+    }
+
+    section {
+      padding: 10rem 6%;
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 5rem;
+      text-shadow: 0 0 25px var(--primary);
+    }
+    .about-text {
+      max-width: 1000px;
+      margin: 0 auto;
+      font-size: 1.4rem;
+      text-align: center;
+      opacity: 0.9;
+      text-shadow: 0 0 10px rgba(0,255,234,0.3);
+    }
+    .highlight {
+      color: var(--secondary);
+      font-weight: bold;
+      text-shadow: 0 0 15px var(--secondary);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 3rem;
+      margin-top: 6rem;
+    }
+    .card {
+      background: var(--card);
+      border: 2px solid var(--primary);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.5s;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .card:hover {
+      transform: translateY(-20px) scale(1.03);
+      box-shadow: 0 30px 60px rgba(0,255,234,0.4);
+      border-color: var(--secondary);
+    }
+    .card-role {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1.2rem;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #000;
+      text-shadow: 0 0 10px #fff;
+    }
+    .card-content {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--dark);
+      border-top: 2px solid var(--primary);
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 5rem; }
+      .hero .tagline { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">AxSquad</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#squad">Squad</a>
+      <a href="#join">Join</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>AxSquad</h1>
+    <p class="tagline">1 2 4 – Owner<br>3 6 7 9 7 10 5 8 – Core Members</p>
+    <button class="cta" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Join The Chaos</button>
+  </section>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p class="about-text">
+      AxSquad is the <span class="highlight">underground elite</span> of Copenhagen.<br><br>
+      We operate in the shadows, bending reality, breaking systems, and building empires.<br><br>
+      Home to <span class="highlight">the biggest vault in DK</span> — an impenetrable digital fortress buried deep beneath the city.<br>
+      Untraceable servers, quantum-grade encryption, endless data stacks holding secrets no one else dares touch.<br>
+      The largest secure vault in Denmark, guarded by layers of chaos only we control.<br><br>
+      From high-stakes ops to next-level disruption — we don't follow rules.<br>
+      We write them. In neon. In code. In blood if needed.<br><br>
+      AxSquad: Where legends are forged, and the rest stay in the dark.
+    </p>
+  </section>
+
+  <section id="squad">
+    <h2>The Squad</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="card-role">OWNER</div>
+        <div class="card-content">
+          <h3>AX 1 2 4</h3>
+          <p>The architect. The spark. The one who runs the show.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-role">MEMBER</div>
+        <div class="card-content">
+          <h3>3 6 7</h3>
+          <p>Shadow operative. Silent. Deadly. Always watching.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-role">MEMBER</div>
+        <div class="card-content">
+          <h3>9 7 10</h3>
+          <p>Code breaker. Reality bender. Digital ghost.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-role">MEMBER</div>
+        <div class="card-content">
+          <h3>5 8</h3>
+          <p>Enforcer. Closer. No loose ends.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join">
+    <h2>Join AxSquad</h2>
+    <p style="text-align:center; font-size:2rem; max-width:900px; margin:3rem auto; text-shadow:0 0 15px var(--secondary);">
+      Prove your worth.<br>
+      Only the elite get through the vault.
+    </p>
+    <div style="text-align:center;">
+      <a href="mailto:gbfdsgherfewgwer@gmail.com" style="color:var(--primary); font-size:2.2rem; text-decoration:none; margin:2rem; display:inline-block; text-shadow:0 0 20px var(--primary);">
+        → gbfdsgherfewgwer@gmail.com
+      </a>
+      <br><br>
+      <p style="font-size:1.3rem; opacity:0.85;">Drop intel. Await response. Stay sharp.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 AxSquad • 1 2 4 leads • Copenhagen shadows • Biggest Vault in DK • No traces. No mercy.
+  </footer>
+
+</body>
+</html>
